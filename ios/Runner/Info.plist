@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFAppStoreID</key>
+	<string>$(IOS_APP_STORE_ID)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(IOS_BUNDLE_ID)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(IOS_BUNDLE_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(IOS_BUNDLE_SHORT_VERSION_STRING)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+	    <dict>
+        	<key>CFBundleTypeRole</key>
+        	<string>Editor</string>
+        	<key>CFBundleURLName</key>
+        	<string>$(IOS_BUNDLE_ID)</string>
+        	<key>CFBundleURLSchemes</key>
+        	<array>
+        		<string>$(IOS_BUNDLE_URL_SCHEMES)</string>
+        	</array>
+        </dict>
+
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.464875247629-erkdtb087jjj08hg3cbg66r7nudg2pva</string>
+				<string>naverurlscheme</string>
+			</array>
+		</dict>
+
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(IOS_BUNDLE_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>naver.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>naver.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>It is Required to be able to access your camera device for video conference.\n(To allow aceess : Settings &gt; Privacy &gt; Camera)</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>It is Required to be able to access your photos for video conference picture share.\n(To allow aceess : Settings &gt; Privacy &gt; Photos)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>It is Required to be able to access your microphone for video conference.\n(To allow aceess : Settings &gt; Privacy &gt; Microphone)</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>naverConsumerKey</key>
+	<string>YNnU2412tVfxbhjFqKcyfDU</string>
+	<key>naverConsumerSecret</key>
+	<string>kgec_towMA</string>
+	<key>naverServiceAppName</key>
+	<string>test</string>
+	<key>naverServiceAppUrlScheme</key>
+	<string>naverurlscheme</string>
+</dict>
+</plist>

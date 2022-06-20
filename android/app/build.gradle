@@ -1,0 +1,114 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+// dart define(default)
+def dartDefines = [
+        IOS_BUNDLE_ID: 'com.flavor.original',
+        AOS_APPLICATION_ID: 'com.flavor.original',
+
+        IOS_BUNDLE_SHORT_VERSION_STRING: '1',
+        AOS_VERSION_NAME: '1',
+
+        IOS_BUNDLE_VERSION: '1.0.0',
+        AOS_VERSION_CODE: '1',
+
+        IOS_BUNDLE_NAME: 'original',
+        AOS_APP_NAME: 'original',
+
+        IOS_BUNDLE_URL_SCHEMES: 'test',
+        AOS_SCHEME: 'test',
+
+        IOS_APP_STORE_ID: '1234',
+
+        AOS_KEY_ALIAS: 'test',
+        AOS_KEY_PASSWORD: 'test',
+        AOS_STORE_FILE: '.keystore',
+        AOS_STORE_PASSWORD: 'test'
+]
+
+if (project.hasProperty('dart-defines')) {
+    dartDefines = dartDefines + project.property('dart-defines')
+            .split(',')
+            .collectEntries { entry ->
+                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+                [(pair.first()): pair.last()]
+            }
+}
+
+// Create a variable called keystorePropertiesFile, and initialize it to your 삭제 예정
+// key.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("key.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    signingConfigs {
+        value {
+            keyAlias dartDefines.AOS_KEY_ALIAS
+            keyPassword dartDefines.AOS_KEY_PASSWORD
+            storeFile file(dartDefines.AOS_STORE_FILE)
+            storePassword dartDefines.AOS_STORE_PASSWORD
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+    compileSdkVersion flutter.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId dartDefines.AOS_APPLICATION_ID
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode dartDefines.AOS_VERSION_CODE.toInteger()
+        versionName dartDefines.AOS_VERSION_NAME
+
+        manifestPlaceholders = [
+                appName: dartDefines.AOS_APP_NAME,
+                appScheme: dartDefines.AOS_SCHEME
+        ]
+
+        signingConfig signingConfigs.value
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+}
